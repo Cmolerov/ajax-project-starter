@@ -1,3 +1,5 @@
+const { ERROR_RATE, getRandomInt, potentialErrors, generateRandomError } = require('../index.js');
+
 const handleClick = () => {
     document.querySelector(".loader").innerHTML = "Loading...";
     fetch("/kitten/image")
@@ -9,7 +11,7 @@ const handleClick = () => {
             document.querySelector("img").src = json.src;
             document.querySelector(".loader").innerHTML = "";
         })
-        .catch((err) => alert(`Somethine went wrong! Please try again!`));
+        .catch((err) => generateRandomError);
 };
 
 const upVote = () => {
@@ -65,5 +67,5 @@ document.addEventListener("submit", (createComment) => {
             p.innerHTML = data.comments.pop();
             document.querySelector(".comments").appendChild(p);
         })
-        .catch((err) => console.log(err));
+        .catch(err => generateRandomError);
 });
